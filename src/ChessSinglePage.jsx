@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
+import axios from "axios";
 
 export const ChessSinglePage =()=> {
 
@@ -11,9 +12,8 @@ export const ChessSinglePage =()=> {
         setPending(true);
         (async () => {
             try {
-        const res= await fetch(`https://chess.sulla.hu/chess/${id}`)
-            const chess = await res.json();
-            setChess(chess);
+        const res= await axios.get(`https://chess.sulla.hu/chess/${id}`);
+            setChess(res.data);
         }
         catch(error) {
             console.log(error);
